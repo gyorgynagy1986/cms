@@ -45,7 +45,7 @@ export default function LoginPage() {
           <div className="mx-auto w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
             <Code className="text-white" size={32} />
           </div>
-          <CardTitle className="text-2xl">AdminPanel</CardTitle>
+          <CardTitle className="text-2xl">CMS-demo</CardTitle>
           <CardDescription>Jelentkezzen be a folytatáshoz</CardDescription>
         </CardHeader>
         <CardContent>
