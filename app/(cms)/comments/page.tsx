@@ -8,6 +8,7 @@ export default async function CommentsPage({
   searchParams?: { q?: string; status?: string }
 }) {
   const supabase = await createClient()
+  
   const searchTerm = searchParams?.q || ""
   const statusFilter = searchParams?.status || "all"
 
