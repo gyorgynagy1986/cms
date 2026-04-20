@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   BarChart3,
   FileText,
@@ -15,51 +15,52 @@ import {
   Star,
   ChevronLeft,
   ChevronRight,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: BarChart3 },
   { name: "Bejegyzések", href: "/posts", icon: FileText },
   { name: "Felhasználók", href: "/users", icon: Users },
+  { name: "Apartmanok", href: "/upload-apartments", icon: Users },
   { name: "Kommentek", href: "/comments", icon: MessageSquare },
   { name: "Vélemények", href: "/reviews", icon: Star },
   { name: "Média", href: "/media", icon: ImageIcon },
   { name: "Analitika", href: "/analytics", icon: TrendingUp },
   { name: "Beállítások", href: "/settings", icon: Settings },
-]
+];
 
 export default function Sidebar() {
-  const pathname = usePathname()
-  const [isCollapsed, setIsCollapsed] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+  const pathname = usePathname();
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkIsMobile = () => {
-      const mobile = window.innerWidth < 768
-      setIsMobile(mobile)
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
       // Auto-collapse on smaller screens, expand on larger
       if (window.innerWidth < 1024) {
-        setIsCollapsed(true)
+        setIsCollapsed(true);
       } else {
-        setIsCollapsed(false)
+        setIsCollapsed(false);
       }
-    }
-    
-    checkIsMobile()
-    window.addEventListener('resize', checkIsMobile)
-    
-    return () => window.removeEventListener('resize', checkIsMobile)
-  }, [])
+    };
+
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
 
   // Don't render sidebar on mobile - navigation is in header hamburger menu
   if (isMobile) {
-    return null
+    return null;
   }
 
   const handleToggle = () => {
-    setIsCollapsed(!isCollapsed)
-  }
+    setIsCollapsed(!isCollapsed);
+  };
 
   return (
     <div
@@ -77,18 +78,16 @@ export default function Sidebar() {
             <h1 className="text-white font-bold text-xl">AdminPanel</h1>
           </Link>
         )}
-        
+
         {/* Toggle button */}
         <button
           onClick={handleToggle}
           className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-700 rounded-lg"
-          aria-label={isCollapsed ? "Sidebar kibontása" : "Sidebar összecsukása"}
+          aria-label={
+            isCollapsed ? "Sidebar kibontása" : "Sidebar összecsukása"
+          }
         >
-          {isCollapsed ? (
-            <ChevronRight size={20} />
-          ) : (
-            <ChevronLeft size={20} />
-          )}
+          {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
       </div>
 
@@ -99,8 +98,8 @@ export default function Sidebar() {
             href={item.href}
             className={cn(
               "w-full flex items-center px-3 py-3 mb-1 text-left rounded-lg hover:bg-gray-700 transition-colors group",
-              pathname === item.href 
-                ? "bg-blue-600 text-white shadow-lg" 
+              pathname === item.href
+                ? "bg-blue-600 text-white shadow-lg"
                 : "text-gray-300 hover:text-white",
               isCollapsed && "justify-center"
             )}
@@ -120,12 +119,14 @@ export default function Sidebar() {
           <div className="bg-gray-800 rounded-lg p-3">
             <div className="flex items-center space-x-2 mb-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-white text-sm font-medium">Rendszer OK</span>
+              <span className="text-white text-sm font-medium">
+                Rendszer OK
+              </span>
             </div>
             <div className="text-xs text-gray-400">Utolsó frissítés: most</div>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
